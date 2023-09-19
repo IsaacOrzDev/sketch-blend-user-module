@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option csharp_namespace = "demo_system_sub";
+
+package user;
+
+// The greeting service definition.
+service User {
+  // Sends a greeting
+  rpc CreateUser (CreateUserRequest) returns (UserReply);
+}
+
+// The request message containing the user's name.
+message CreateUserRequest {
+  string name = 1;
+  optional string email = 2;
+}
+
+// The response message containing the greetings.
+message UserReply {
+  uint32 id = 1;
+  string name = 2;
+  string email = 3;
+}
