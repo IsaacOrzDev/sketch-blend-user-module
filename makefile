@@ -1,5 +1,5 @@
 db-migrate:
-	dotnet ef migrations add InitialCreate
+	dotnet ef migrations add $(var)
 db-update:
 	dotnet ef database update
 build:

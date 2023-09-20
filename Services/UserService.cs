@@ -2,13 +2,13 @@ using Grpc.Core;
 
 namespace demo_system_sub.Services;
 
-public class UserService : User.UserBase
+public class UserServiceGrpc : UserService.UserServiceBase
 {
 
   private AppDbContext _appDbContext;
 
-  private readonly ILogger<UserService> _logger;
-  public UserService(ILogger<UserService> logger, AppDbContext appDbContext)
+  private readonly ILogger<UserServiceGrpc> _logger;
+  public UserServiceGrpc(ILogger<UserServiceGrpc> logger, AppDbContext appDbContext)
   {
     _logger = logger;
     _appDbContext = appDbContext;
@@ -16,10 +16,11 @@ public class UserService : User.UserBase
 
   public override async Task<UserReply> CreateUser(CreateUserRequest request, ServerCallContext context)
   {
-    var user = new UserModel
+    var user = new User
     {
       Name = request.Name,
       Email = request.Email,
+
     };
     _appDbContext.Users.Add(user);
     await _appDbContext.SaveChangesAsync();

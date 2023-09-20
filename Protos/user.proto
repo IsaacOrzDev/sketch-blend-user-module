@@ -5,7 +5,7 @@ option csharp_namespace = "demo_system_sub";
 package user;
 
 // The greeting service definition.
-service User {
+service UserService {
   // Sends a greeting
   rpc CreateUser (CreateUserRequest) returns (UserReply);
   rpc Testing (TestingRequest) returns (TestingReply);
