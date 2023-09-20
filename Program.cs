@@ -20,17 +20,17 @@ using (var scope = app.Services.CreateScope())
 
 {
 
-  var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-  if (context is null || !await context.Database.CanConnectAsync())
-  {
-    Console.WriteLine("Cannot connect to database");
-    return;
-  }
+  // var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+  // if (context is null || !await context.Database.CanConnectAsync())
+  // {
+  //   Console.WriteLine("Cannot connect to database");
+  //   return;
+  // }
 
-  if (!await context.Database.EnsureCreatedAsync())
-  {
-    await context.Database.MigrateAsync();
-  }
+  // if (!await context.Database.EnsureCreatedAsync())
+  // {
+  //   await context.Database.MigrateAsync();
+  // }
 }
 
 app.MapGrpcService<UserService>();
