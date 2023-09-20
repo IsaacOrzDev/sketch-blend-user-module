@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddJsonFile("hostsettings.json", optional: true);
+
 var configuration = builder.Configuration
   .SetBasePath(Directory.GetCurrentDirectory())
   .AddJsonFile($"appsettings.json", true, true)
