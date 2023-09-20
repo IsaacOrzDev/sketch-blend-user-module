@@ -8,6 +8,7 @@ package user;
 service User {
   // Sends a greeting
   rpc CreateUser (CreateUserRequest) returns (UserReply);
+  rpc Testing (TestingRequest) returns (TestingReply);
 }
 
 // The request message containing the user's name.
@@ -21,4 +22,12 @@ message UserReply {
   uint32 id = 1;
   string name = 2;
   string email = 3;
+}
+
+message TestingRequest {
+
+}
+
+message TestingReply {
+  string message = 1;
 }

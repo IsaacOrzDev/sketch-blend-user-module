@@ -32,4 +32,11 @@ public class UserService : User.UserBase
     };
   }
 
+  public override Task<TestingReply> Testing(TestingRequest request, ServerCallContext context)
+  {
+    return Task.FromResult(new TestingReply
+    {
+      Message = "testing"
+    });
+  }
 }

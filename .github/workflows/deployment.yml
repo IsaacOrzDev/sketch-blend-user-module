@@ -12,7 +12,7 @@ jobs:
       id-token: write
       contents: read
     with:
-      repository_name: custom-mqtt-sub
+      repository_name: demo-system-sub
       service_name: demo-system
     secrets:
       IAM_ROLE_ARN_FOR_ECR: ${{ secrets.AWS_ROLE_ARN }}
