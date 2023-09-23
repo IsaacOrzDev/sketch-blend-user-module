@@ -1,0 +1,63 @@
+
+syntax = "proto3";
+
+option csharp_namespace = "demo_system_user_module";
+
+package access_token;
+
+service AccessTokenService {
+  rpc GenerateAccessToken (GenerateAccessTokenRequest) returns (AccessTokenReply);
+  rpc VerifyAccessToken(VerifyAccessTokenRequest) returns (VerifyAccessTokenReply);
+  rpc AddOneTimeAccessToken(AddOneTimeAccessTokenRequest) returns (AddOneTimeAccessTokenReply);
+  rpc VerifyOneTimeAccessToken(VerifyOneTimeAccessTokenRequest) returns (VerifyOneTimeAccessTokenReply);
+}
+
+message GenerateAccessTokenRequest {
+  optional uint32 userId = 1;
+  optional string username = 2;
+  optional string email = 3;
+  optional string imageUrl = 4;
+  optional string durationType = 5;
+}
+
+message AccessTokenReply {
+  string accessToken = 1;
+  int64 expiresIn = 2;
+}
+
+message VerifyAccessTokenRequest {
+  string accessToken = 1;
+}
+
+message VerifyAccessTokenReply {
+  bool isValid = 1;
+  optional uint32 userId = 2;
+  optional string username = 3;
+  optional string email = 4;
+  optional string imageUrl = 5;
+}
+
+message AddOneTimeAccessTokenRequest {
+  optional uint32 userId = 1;
+  optional string username = 2;
+  optional string email = 3;
+  optional string imageUrl = 4;
+  optional string durationType = 5;
+}
+
+message AddOneTimeAccessTokenReply {
+  string accessToken = 1;
+  int64 expiresIn = 2;
+}
+
+message VerifyOneTimeAccessTokenRequest {
+  string accessToken = 1;
+}
+
+message VerifyOneTimeAccessTokenReply {
+  bool isValid = 1;
+  optional uint32 userId = 2;
+  optional string username = 3;
+  optional string email = 4;
+  optional string imageUrl = 5;
+}

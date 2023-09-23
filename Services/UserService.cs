@@ -32,12 +32,4 @@ public class UserServiceGrpc : UserService.UserServiceBase
       Email = request.Email,
     };
   }
-
-  public override Task<TestingReply> Testing(TestingRequest request, ServerCallContext context)
-  {
-    return Task.FromResult(new TestingReply
-    {
-      Message = "testing"
-    });
-  }
 }
