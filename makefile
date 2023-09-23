@@ -3,4 +3,4 @@ db-migrate:
 db-update:
 	dotnet ef database update
 build:
-	docker build -t demo-system-sub .
+	docker build -t demo-system-user-module .

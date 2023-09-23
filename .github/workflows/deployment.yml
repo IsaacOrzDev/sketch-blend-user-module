@@ -12,7 +12,7 @@ jobs:
       id-token: write
       contents: read
     with:
-      repository_name: demo-system-sub
+      repository_name: demo-system-user-module
       service_name: demo-system
     secrets:
       IAM_ROLE_ARN_FOR_ECR: ${{ secrets.AWS_ROLE_ARN }}
