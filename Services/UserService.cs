@@ -1,6 +1,6 @@
 using Grpc.Core;
 
-namespace demo_system_sub.Services;
+namespace demo_system_user_module.Services;
 
 public class UserServiceGrpc : UserService.UserServiceBase
 {
