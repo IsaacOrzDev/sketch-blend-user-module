@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Dynamic;
 using Newtonsoft.Json;
+using Google.Protobuf.WellKnownTypes;
 
 namespace demo_system_user_module.Services;
 
@@ -13,14 +14,6 @@ public class AccessTokenServiceGrpc : AccessTokenService.AccessTokenServiceBase
 
   private readonly ILogger<UserServiceGrpc> _logger;
   private readonly IConfiguration _config;
-
-  private static readonly DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-
-  private static long ConvertToTimestamp(DateTime value)
-  {
-    TimeSpan elapsedTime = value - Epoch;
-    return (long)elapsedTime.TotalSeconds;
-  }
 
   public AccessTokenServiceGrpc(ILogger<UserServiceGrpc> logger, IConfiguration config)
   {
@@ -65,7 +58,7 @@ public class AccessTokenServiceGrpc : AccessTokenService.AccessTokenServiceBase
     return Task.FromResult(new AccessTokenReply()
     {
       AccessToken = tokenStr,
-      ExpiresAtUtc = ConvertToTimestamp(expiresAt.ToUniversalTime()),
+      ExpiresAtUtc = Timestamp.FromDateTime(expiresAt.ToUniversalTime())
     });
   }
 

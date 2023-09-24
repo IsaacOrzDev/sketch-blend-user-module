@@ -5,6 +5,8 @@ option csharp_namespace = "demo_system_user_module";
 
 package access_token;
 
+import "google/protobuf/timestamp.proto";
+
 service AccessTokenService {
   rpc GenerateAccessToken (GenerateAccessTokenRequest) returns (AccessTokenReply);
   rpc VerifyAccessToken(VerifyAccessTokenRequest) returns (VerifyAccessTokenReply);
@@ -22,7 +24,7 @@ message GenerateAccessTokenRequest {
 
 message AccessTokenReply {
   string accessToken = 1;
-  int64 expiresAtUtc = 2;
+  google.protobuf.Timestamp expiresAtUtc = 2;
 }
 
 message VerifyAccessTokenRequest {
@@ -47,7 +49,7 @@ message AddOneTimeAccessTokenRequest {
 
 message AddOneTimeAccessTokenReply {
   string accessToken = 1;
-  int64 expiresAtUtc = 2;
+  google.protobuf.Timestamp expiresAtUtc = 2;
 }
 
 message VerifyOneTimeAccessTokenRequest {
