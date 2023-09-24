@@ -36,6 +36,7 @@ if (configuration.GetValue<String>("ENABLE_GRPC_REFLECTION") == "true")
   app.MapGrpcReflectionService();
 }
 
+app.MapGrpcService<AccessTokenServiceGrpc>();
 app.MapGrpcService<UserServiceGrpc>();
 app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
 

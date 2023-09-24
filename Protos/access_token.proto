@@ -22,7 +22,7 @@ message GenerateAccessTokenRequest {
 
 message AccessTokenReply {
   string accessToken = 1;
-  int64 expiresIn = 2;
+  int64 expiresAtUtc = 2;
 }
 
 message VerifyAccessTokenRequest {
@@ -47,7 +47,7 @@ message AddOneTimeAccessTokenRequest {
 
 message AddOneTimeAccessTokenReply {
   string accessToken = 1;
-  int64 expiresIn = 2;
+  int64 expiresAtUtc = 2;
 }
 
 message VerifyOneTimeAccessTokenRequest {
