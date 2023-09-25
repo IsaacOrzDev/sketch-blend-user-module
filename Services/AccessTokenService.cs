@@ -46,6 +46,18 @@ public class AccessTokenServiceGrpc : AccessTokenService.AccessTokenServiceBase
       case "10m":
         expiresAt = expiresAt.AddMinutes(10);
         break;
+      case "15m":
+        expiresAt = expiresAt.AddMinutes(15);
+        break;
+      case "1w":
+        expiresAt = expiresAt.AddDays(7);
+        break;
+      case "1m":
+        expiresAt = expiresAt.AddDays(30);
+        break;
+      case "1y":
+        expiresAt = expiresAt.AddDays(365);
+        break;
       case "1d":
       default:
         expiresAt = expiresAt.AddDays(1);
@@ -142,7 +154,7 @@ public class AccessTokenServiceGrpc : AccessTokenService.AccessTokenServiceBase
     dto.Email = request.Email;
     dto.ImageUrl = request.ImageUrl;
     dto.UserId = request.UserId;
-    dto.DurationType = "10m";
+    dto.DurationType = request.DurationType;
     var reply = GenerateAccessToken(dto);
 
     var oneTimeToken = new Db.OneTimeAccessToken
