@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-
 using demo_system_user_module.Db;
 
 #nullable disable
@@ -14,8 +13,8 @@ using demo_system_user_module.Db;
 namespace demosystemusermodule.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230920014225_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230925131925_Update")]
+    partial class Update
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,7 +26,7 @@ namespace demosystemusermodule.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Login", b =>
+            modelBuilder.Entity("demo_system_user_module.Db.Login", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,8 +44,9 @@ namespace demosystemusermodule.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("text");
 
-                    b.Property<int>("Method")
-                        .HasColumnType("integer");
+                    b.Property<string>("Method")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
@@ -62,7 +62,7 @@ namespace demosystemusermodule.Migrations
                     b.ToTable("Logins");
                 });
 
-            modelBuilder.Entity("OneTimeAccessToken", b =>
+            modelBuilder.Entity("demo_system_user_module.Db.OneTimeAccessToken", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -94,7 +94,7 @@ namespace demosystemusermodule.Migrations
                     b.ToTable("OneTimeAccessTokens");
                 });
 
-            modelBuilder.Entity("User", b =>
+            modelBuilder.Entity("demo_system_user_module.Db.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -125,9 +125,9 @@ namespace demosystemusermodule.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Login", b =>
+            modelBuilder.Entity("demo_system_user_module.Db.Login", b =>
                 {
-                    b.HasOne("User", "User")
+                    b.HasOne("demo_system_user_module.Db.User", "User")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -136,7 +136,7 @@ namespace demosystemusermodule.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("User", b =>
+            modelBuilder.Entity("demo_system_user_module.Db.User", b =>
                 {
                     b.Navigation("Logins");
                 });

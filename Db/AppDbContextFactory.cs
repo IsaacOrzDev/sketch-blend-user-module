@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
+using demo_system_user_module.Db;
+
 public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
 {
   public AppDbContext CreateDbContext(string[] args)

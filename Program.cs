@@ -1,4 +1,5 @@
 using demo_system_user_module.Services;
+using demo_system_user_module.Db;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,7 @@ using (var scope = app.Services.CreateScope())
   var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
   if (context is null || !await context.Database.CanConnectAsync())
   {
+    
     Console.WriteLine("Cannot connect to database");
     return;
   }

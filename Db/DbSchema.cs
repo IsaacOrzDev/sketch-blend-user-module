@@ -1,27 +1,17 @@
 using System.Text.Json;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-public enum LoginMethod
-{
-  GOOGLE,
-  GITHUB,
-  PASSWORD_LESS
-}
+namespace demo_system_user_module.Db;
+
 
 public class Base
 {
   [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
   public int Id { get; set; }
 
-  // [Timestamp]
-  // public byte[]? Timestamp { get; set; } // Concurrency check property
 
-  [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
   public DateTime? CreatedAt { get; set; }
 
-  // [ConcurrencyCheck]
-  [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
   public DateTime? UpdatedAt { get; set; }
 
   public Base()
@@ -33,11 +23,11 @@ public class Base
 
 public class Login : Base
 {
-  public LoginMethod Method { get; set; }
-  public required int UserId { get; set; }
+  public required string Method { get; set; }
+  public int UserId { get; set; }
   public string? ImageUrl { get; set; }
   public JsonDocument? Data { get; set; }
-  public required User User { get; set; }
+  public User User { get; set; }
 }
 
 public class User : Base
@@ -46,6 +36,7 @@ public class User : Base
   public string? Email { get; set; }
   public DateTime? LoginAt { get; set; }
   public List<Login>? Logins { get; set; }
+
 }
 
 public class OneTimeAccessToken : Base

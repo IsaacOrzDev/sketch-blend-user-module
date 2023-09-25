@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "google/protobuf/any.proto";
+import "google/protobuf/struct.proto";
 
 option csharp_namespace = "demo_system_user_module";
 
@@ -17,11 +18,13 @@ service UserService {
 message CreateUserRequest {
   string name = 1;
   optional string email = 2;
+  Login login = 3;
 }
 
 message Login {
   string method = 1;
-  optional google.protobuf.Any data = 2;
+  // optional google.protobuf.Any data = 2;
+  optional google.protobuf.Struct data = 2;
   optional string imageUrl = 3;
 }
 
@@ -36,9 +39,13 @@ message LoginUserRequest {
   Login login = 2;
 }
 
-// The response message containing the greetings.
-message UserReply {
+message User {
   uint32 id = 1;
   string name = 2;
-  string email = 3;
+  optional string email = 3;
+  optional string imageUrl = 4;
+}
+
+message UserReply {
+  optional User user = 1;
 }
