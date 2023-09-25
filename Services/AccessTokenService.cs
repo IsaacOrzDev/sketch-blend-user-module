@@ -24,7 +24,7 @@ public class AccessTokenServiceGrpc : AccessTokenService.AccessTokenServiceBase
   public override Task<AccessTokenReply> GenerateAccessToken(GenerateAccessTokenRequest request, ServerCallContext context)
   {
     var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetValue<string>("JWT_SECRET") ?? ""));
-    var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+    var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.Aes128CbcHmacSha256);
 
     dynamic data = new ExpandoObject();
     data.ImageUrl = request.ImageUrl ?? "";
