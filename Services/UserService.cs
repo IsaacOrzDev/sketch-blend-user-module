@@ -54,7 +54,7 @@ public class UserServiceGrpc : UserService.UserServiceBase
   public override Task<UserReply> FindUser(FindUserRequest request, ServerCallContext context)
   {
     var user = _appDbContext.Users.Include(u => u.Logins)
-    .FirstOrDefault(u => u.Email == request.Email ||
+    .FirstOrDefault(u => request.Email != null && u.Email == request.Email ||
       u.Name == request.Name && u.Logins != null &&
        u.Logins.FirstOrDefault(x => x.Method == request.LoginMethod) != null
     );
@@ -64,7 +64,7 @@ public class UserServiceGrpc : UserService.UserServiceBase
     }
     else
     {
-      var ImageUrl = user.Logins != null ? user.Logins.FirstOrDefault(x => x.Method == request.LoginMethod)?.ImageUrl : null;
+      var ImageUrl = user.Logins != null ? user.Logins.FirstOrDefault(x => x.Method == request.LoginMethod)?.ImageUrl : "";
       return Task.FromResult(new UserReply
       {
         User = new()
