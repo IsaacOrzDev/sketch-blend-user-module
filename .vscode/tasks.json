@@ -7,7 +7,7 @@
       "type": "process",
       "args": [
         "build",
-        "${workspaceFolder}/demo-system-user-module.csproj",
+        "${workspaceFolder}/sketch-blend-user-module.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
@@ -19,7 +19,7 @@
       "type": "process",
       "args": [
         "publish",
-        "${workspaceFolder}/demo-system-user-module.csproj",
+        "${workspaceFolder}/sketch-blend-user-module.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
@@ -33,7 +33,7 @@
         "watch",
         "run",
         "--project",
-        "${workspaceFolder}/demo-system-user-module.csproj"
+        "${workspaceFolder}/sketch-blend-user-module.csproj"
       ],
       "problemMatcher": "$msCompile"
     }

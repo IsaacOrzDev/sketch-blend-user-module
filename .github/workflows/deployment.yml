@@ -12,8 +12,8 @@ jobs:
       id-token: write
       contents: read
     with:
-      repository_name: demo-system-user-module
-      service_name: demo-system
+      repository_name: sketch-blend-user-module
+      service_name: sketch-blend
     secrets:
       IAM_ROLE_ARN_FOR_ECR: ${{ secrets.AWS_ROLE_ARN }}
       IAM_ROLE_ARN_FOR_ECS: ${{ secrets.AWS_ROLE_ARN_FOR_ECS }}

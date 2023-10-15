@@ -11,4 +11,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:7.0 as runtime
 WORKDIR /App
 COPY --from=build-env /App/out .
 EXPOSE 80
-ENTRYPOINT ["dotnet", "demo-system-user-module.dll"]
+ENTRYPOINT ["dotnet", "sketch-blend-user-module.dll"]
