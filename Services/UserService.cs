@@ -94,14 +94,14 @@ public class UserServiceGrpc : UserService.UserServiceBase
       {
         UserId = (int)request.Id,
         Method = request.Login.Method,
-        Data = JsonDocument.Parse(request.Login.Data.ToString()),
+        Data = request.Login.Data == null ? JsonDocument.Parse("{}") : JsonDocument.Parse(request.Login.Data.ToString()),
         ImageUrl = request.Login.ImageUrl,
       };
       _appDbContext.Logins.Add(login);
     }
     else
     {
-      login.Data = JsonDocument.Parse(request.Login.Data.ToString());
+      login.Data = request.Login.Data == null ? JsonDocument.Parse("{}") : JsonDocument.Parse(request.Login.Data.ToString());
       login.ImageUrl = request.Login.ImageUrl;
     }
     user.LoginAt = DateTime.UtcNow;
