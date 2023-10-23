@@ -56,7 +56,7 @@ public class UserServiceGrpc : UserService.UserServiceBase
     var user = _appDbContext.Users.Include(u => u.Logins)
     .FirstOrDefault(u => request.Email != null && request.Email != "" && u.Email == request.Email
     ||
-      u.Name == request.Name && u.Logins != null &&
+       request.Name != "" && u.Name == request.Name && u.Logins != null &&
        u.Logins.FirstOrDefault(x => x.Method == request.LoginMethod) != null
     );
     if (user == null)
