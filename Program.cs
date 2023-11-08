@@ -26,7 +26,7 @@ using (var scope = app.Services.CreateScope())
   var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
   if (context is null || !await context.Database.CanConnectAsync())
   {
-    
+
     Console.WriteLine("Cannot connect to database");
     return;
   }
@@ -40,6 +40,7 @@ if (configuration.GetValue<String>("ENABLE_GRPC_REFLECTION") == "true")
 
 app.MapGrpcService<AccessTokenServiceGrpc>();
 app.MapGrpcService<UserServiceGrpc>();
+app.MapGrpcService<HealthServiceGrpc>();
 app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
 
 app.Run();
